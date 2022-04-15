@@ -10,6 +10,14 @@ const Home: NextPage = () => {
 
   const [todo, setTodo] = useState<string>('');
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTodo(e.target.value);
+  };
+
+  const handleClick = () => {
+    addItem(todo);
+  };
+
   return (
     <div className={styles.container}>
       <Link href="/about">About</Link>
@@ -17,12 +25,12 @@ const Home: NextPage = () => {
       <h3>TodoList</h3>
       <input
         type="text"
-        onChange={(e) => setTodo(e.target.value)}
+        onChange={handleChange}
       />
       <input
         type="submit"
         value="追加"
-        onClick={() => addItem(todo)}
+        onClick={handleClick}
       />
       {snap.todoList.map((todo) => {
         return <p key={todo}>・{todo}</p>;
